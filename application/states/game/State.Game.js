@@ -1,4 +1,6 @@
-BaseState.Game = function (game) {
+var State = State || new Object;
+
+State.Game = function (game) {
 
     //  When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -24,7 +26,7 @@ BaseState.Game = function (game) {
 
 };
 
-BaseState.Game.prototype = {
+State.Game.prototype = {
 
     create: function () {
 

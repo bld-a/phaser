@@ -1,6 +1,8 @@
-BaseState.Boot = function (game) {};
+var State = State || new Object;
 
-BaseState.Boot.prototype = {
+State.Boot = function (game) {};
+
+State.Boot.prototype = {
 
     init: function () {
 
