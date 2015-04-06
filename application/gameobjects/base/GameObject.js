@@ -1,7 +1,11 @@
 var GameObject = GameObject || new Object;
 
-GameObject.prototype = {
+GameObject.Base = function(){
+    this.testprop = 'testprop';
+};
+
+GameObject.Base.prototype = {
     test: function(){
-        console.log('gameobject base')
+        console.log('test');
     }
-}
+};

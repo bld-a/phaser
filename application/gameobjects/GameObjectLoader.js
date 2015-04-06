@@ -6,9 +6,8 @@ GameObject.ObjectLoader = function(ConfigItem){
     var filename = 'application/gameobjects/'+ConfigItem.name+'/GameObject.'+ConfigItem.name+'.js';
     fileref.setAttribute("src", filename);
 
-    if (typeof fileref!="undefined")
+    if (typeof fileref != "undefined")
         document.getElementsByTagName("head")[0].appendChild(fileref);
-    else throw "Cannot Load GameObject!";
 };
 
 Config.GameObject.forEach(function(ConfigItem){

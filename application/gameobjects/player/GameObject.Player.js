@@ -1,7 +1,7 @@
 var GameObject = GameObject || new Object;
 
-GameObject.Player = {
-    test: function(){
-        console.log('gameobject player')
-    }
-}
+GameObject.Player = function(){
+
+};
+
+GameObject.Player.prototype = new GameObject.Base;
