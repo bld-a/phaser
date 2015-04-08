@@ -16,6 +16,6 @@ window.onload = function () {
     //	Now start the Boot state.
     MyGame.game.state.start('Boot');
 
-}
+};
 
 
