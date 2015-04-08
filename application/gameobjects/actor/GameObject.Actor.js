@@ -1,7 +1,9 @@
 var GameObject = GameObject || new Object;
 
-GameObject.Actor = function(){
+GameObject.Actor = GameObject.Base.extend({
+    testproperty: 'actor testprop',
 
-};
-
-GameObject.Actor.prototype = new GameObject.Base;
+    testfunction: function(){
+        console.log('actor test()')
+    }
+});

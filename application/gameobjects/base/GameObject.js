@@ -1,11 +1,11 @@
 var GameObject = GameObject || new Object;
 
-GameObject.Base = function(){
-    this.testprop = 'testprop';
-};
+GameObject.Base = Class.extend({
 
-GameObject.Base.prototype = {
-    test: function(){
-        console.log('test');
+    testproperty: 'testprop',
+
+    testfunction: function(){
+        console.log('test()')
     }
-};
+
+});
