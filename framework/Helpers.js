@@ -62,3 +62,8 @@
         return Class;
     };
 })();
+
+function Each(obj, fn) {
+    if (obj.length) for (var i = 0, ol = obj.length, v = obj[0]; i < ol && fn(v, i) !== false; v = obj[++i]);
+    else for (var p in obj) if (fn(obj[p], p) === false) break;
+};
