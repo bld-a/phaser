@@ -30,7 +30,19 @@ State.Game.prototype = {
 
     create: function () {
 
-        //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
+        var Text = MyGame.game.add.text(MyGame.game.world.centerX, MyGame.game.world.centerY, "TestText", Config.Text.BaseText.Style);
+        MyGame.Controls.left.onDown.add(function(key){
+            Text.text = 'l';
+        }, this);
+        MyGame.Controls.right.onDown.add(function(key){
+            Text.text = 'r';
+        }, this);
+        MyGame.Controls.up.onDown.add(function(key){
+            Text.text = 'u';
+        }, this);
+        MyGame.Controls.down.onDown.add(function(key){
+            Text.text = 'd';
+        }, this);
 
     },
 
