@@ -1,7 +1,5 @@
 var GameObject = GameObject || new Object;
 
-GameObject.Fixed = function(){
-
-};
-
-GameObject.Fixed.prototype = new GameObject.Base;
+GameObject.Fixed = GameObject.Base.extend({
+    Category: 'Fixed'
+});

@@ -24,35 +24,67 @@ State.Game = function (game) {
     //  You can use any of these from any function within this State.
     //  But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
 
+    this.map = new Array;
+    this.floor = new GameObject.Fixed.Floor;
+    this.wall = new GameObject.Fixed.Wall;
+
 };
 
 State.Game.prototype = {
 
-    create: function () {
+    init: function(){
 
-        var Text = MyGame.game.add.text(MyGame.game.world.centerX, MyGame.game.world.centerY, "TestText", Config.Text.BaseText.Style);
-        MyGame.Controls.left.onDown.add(function(key){
-            Text.text = 'l';
-        }, this);
-        MyGame.Controls.right.onDown.add(function(key){
-            Text.text = 'r';
-        }, this);
-        MyGame.Controls.up.onDown.add(function(key){
-            Text.text = 'u';
-        }, this);
-        MyGame.Controls.down.onDown.add(function(key){
-            Text.text = 'd';
-        }, this);
+        this.initMap();
 
     },
 
-    update: function () {
+    create: function () {
 
-        //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
+        MyGame.game.add.text(this.world.centerX, this.world.centerY, "TestText", Config.Text.BaseText.Style);
+
+        MyGame.Controls.left.onDown.add(this.movePlayer, this);
+        MyGame.Controls.right.onDown.add(this.movePlayer, this);
+        MyGame.Controls.up.onDown.add(this.movePlayer, this);
+        MyGame.Controls.down.onDown.add(this.movePlayer, this);
+
+    },
+
+    initMap: function(){
+        for (var y = 0; y < ROWS; y++) {
+            var newRow = [];
+            for (var x = 0; x < COLS; x++) {
+                if (Math.random() > 0.8)
+                    newRow.push(this.wall.getSymbol());
+                else
+                    newRow.push(this.floor.getSymbol());
+            }
+            this.map.push(newRow);
+        }
+    },
+
+    movePlayer: function(key){
+
+        switch (key.keyCode) {
+            case Phaser.Keyboard.LEFT:
+                console.log('l');
+            break;
+            case Phaser.Keyboard.RIGHT:
+                console.log('r');
+            break;
+            case Phaser.Keyboard.DOWN:
+                console.log('d');
+            break;
+            case Phaser.Keyboard.UP:
+                console.log('u');
+            break;
+            default: return false;
+        }
 
     },
 
     quitGame: function (pointer) {
+
+
 
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
