@@ -8,4 +8,14 @@ Config.GameObject = {
         Player: {},
         Enemy: {}
     }
-};
+}
+
+Config.Controls = {
+
+}
+
+Config.Text = {
+    BaseText: {
+        Style: {}
+    }
+}
