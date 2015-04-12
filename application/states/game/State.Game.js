@@ -35,12 +35,11 @@ State.Game.prototype = {
     init: function(){
 
         this.initMap();
+        this.initDisplay();
 
     },
 
     create: function () {
-
-        MyGame.game.add.text(this.world.centerX, this.world.centerY, "TestText", Config.Text.BaseText.Style);
 
         MyGame.Controls.left.onDown.add(this.movePlayer, this);
         MyGame.Controls.right.onDown.add(this.movePlayer, this);
@@ -60,6 +59,14 @@ State.Game.prototype = {
             }
             this.map.push(newRow);
         }
+    },
+
+    initDisplay: function(){
+        Each(this.map, function(row, y){
+            Each(row, function(column, x){
+               MyGame.game.add.text(FONT*0.6*x, FONT*y, column, Config.Text.Map.Style);
+            });
+        });
     },
 
     movePlayer: function(key){
