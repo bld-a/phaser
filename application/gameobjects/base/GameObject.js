@@ -2,13 +2,12 @@ var GameObject = GameObject || new Object;
 
 GameObject.Base = Class.extend({
 
+    x: 0,
+    y: 0,
+
     //shit, Config.js and class declaration conflicts
-    getObj: function(){
-        var ret = {};
-        ret['Category'] = this.Category;
-        ret['Type'] = this.Type;
-        ret['Config'] = Config.GameObject[this.Category][this.Type];
-        return ret;
+    init: function(){
+        this.Config = Config.GameObject[this.Category][this.Type];
     }
 
 });

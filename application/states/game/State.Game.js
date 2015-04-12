@@ -25,8 +25,6 @@ State.Game = function (game) {
     //  But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
 
     this.map = new Array;
-    this.floor = new GameObject.Fixed.Floor;
-    this.wall = new GameObject.Fixed.Wall;
 
 };
 
@@ -52,19 +50,23 @@ State.Game.prototype = {
         for (var y = 0; y < ROWS; y++) {
             var newRow = [];
             for (var x = 0; x < COLS; x++) {
+                var GameObj = {};
                 if (Math.random() > 0.8){
-                    newRow.push(this.wall.getObj());
-                }else{
-                    newRow.push(this.floor.getObj());
+                    GameObj = new GameObject.Fixed.Wall;
+                    newRow.push(GameObj);
+                } else {
+                    GameObj = new GameObject.Fixed.Floor;
+                    newRow.push(GameObj);
                 }
-
+                GameObj.x = x;
+                GameObj.y = y;
             }
             this.map.push(newRow);
         }
-        console.log(this.map);
     },
 
     initDisplay: function(){
+
         Each(this.map, function(row, y){
             Each(row, function(column, x){
                 //style not works from Config.js why??
@@ -72,6 +74,7 @@ State.Game.prototype = {
                 MyGame.game.add.text(FONT*0.6*x, FONT*y, column.Config.symbol, style);
             });
         });
+
     },
 
     movePlayer: function(key){
