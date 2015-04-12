@@ -52,19 +52,24 @@ State.Game.prototype = {
         for (var y = 0; y < ROWS; y++) {
             var newRow = [];
             for (var x = 0; x < COLS; x++) {
-                if (Math.random() > 0.8)
-                    newRow.push(this.wall.getSymbol());
-                else
-                    newRow.push(this.floor.getSymbol());
+                if (Math.random() > 0.8){
+                    newRow.push(this.wall.getObj());
+                }else{
+                    newRow.push(this.floor.getObj());
+                }
+
             }
             this.map.push(newRow);
         }
+        console.log(this.map);
     },
 
     initDisplay: function(){
         Each(this.map, function(row, y){
             Each(row, function(column, x){
-               MyGame.game.add.text(FONT*0.6*x, FONT*y, column, Config.Text.Map.Style);
+                //style not works from Config.js why??
+                var style = {font: FONT + 'px monospaced', fill: column.Config.color};
+                MyGame.game.add.text(FONT*0.6*x, FONT*y, column.Config.symbol, style);
             });
         });
     },
