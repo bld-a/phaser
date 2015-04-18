@@ -25,6 +25,9 @@ State.Game = function (game) {
     //  But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
 
     this.map = new Array;
+    this.mapDisplay = new Array;
+    this.actorMap = new Array;
+    this.actorList = new Array;
 
 };
 
@@ -33,6 +36,7 @@ State.Game.prototype = {
     init: function(){
 
         this.initMap();
+        this.initActor();
         this.initDisplay();
 
     },
@@ -44,12 +48,16 @@ State.Game.prototype = {
         MyGame.Controls.up.onDown.add(this.movePlayer, this);
         MyGame.Controls.down.onDown.add(this.movePlayer, this);
 
+        console.log(this.mapDisplay);
+        //this.drawDisplay();
     },
 
     initMap: function(){
         for (var y = 0; y < ROWS; y++) {
+            this.mapDisplay[y] = [];
             var newRow = [];
             for (var x = 0; x < COLS; x++) {
+                this.mapDisplay[y][x] = []
                 var GameObj = {};
                 if (Math.random() > 0.8){
                     GameObj = new GameObject.Fixed.Wall;
@@ -65,16 +73,73 @@ State.Game.prototype = {
         }
     },
 
+    initActor: function(){
+
+        // create actors at random locations
+        for (var e=0; e<ACTORS; e++) {
+            //player
+            if (e==0){
+                var actor = new GameObject.Actor.Player;
+                this.player = actor;
+            } else {//enemy
+                var actor = new GameObject.Actor.Enemy;
+            }
+            do {
+                // pick a random position that is both a floor and not occupied
+                actor.y=this.rnd.between(1, ROWS-1);
+                actor.x=this.rnd.between(1, COLS-1);
+            } while ( this.map[actor.y][actor.x].Type == 'Wall' || this.actorMap[actor.y + "_" + actor.x] != null );
+
+            // add references to the actor to the actors list & map
+            this.actorMap[actor.y + "_" + actor.x]= actor;
+            this.actorList.push(actor);
+        }
+
+        this.livingEnemies = ACTORS-1;
+
+    },
+
     initDisplay: function(){
 
+        var self = this;
+        console.log(self.actorMap);
+
         Each(this.map, function(row, y){
+            self.mapDisplay[y] = new Array;
             Each(row, function(column, x){
-                //style not works from Config.js why??
-                var style = {font: FONT + 'px monospaced', fill: column.Config.color};
-                MyGame.game.add.text(FONT*0.6*x, FONT*y, column.Config.symbol, style);
+
+                var cell = {};
+
+                if (self.actorMap[y + "_" + x]){
+                    cell = self.actorMap[y + "_" + x];
+                } else {
+                    cell = column;
+                }
+
+                self.mapDisplay[y][x] = self.drawCell(cell);
+
             });
         });
 
+    },
+
+    drawDisplay: function(){
+
+        var self = this;
+
+        Each(this.mapDisplay, function(row, y){
+            Each(row, function(column, x){
+
+            });
+        });
+
+        this.mapDisplay = blocks;
+
+    },
+
+    drawCell: function(column){
+        var style = {font: FONT + 'px monospaced', fill: column.color};
+        return MyGame.game.add.text(FONT*0.6*column.x, FONT*column.y, column.symbol, style);
     },
 
     movePlayer: function(key){
@@ -98,8 +163,6 @@ State.Game.prototype = {
     },
 
     quitGame: function (pointer) {
-
-
 
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.

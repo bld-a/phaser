@@ -7,7 +7,15 @@ GameObject.Base = Class.extend({
 
     //shit, Config.js and class declaration conflicts
     init: function(){
-        this.Config = Config.GameObject[this.Category][this.Type];
+        var config = Config.GameObject[this.Category][this.Type];
+        this.buildProperties(config);
+    },
+
+    buildProperties: function(config){
+        var self = this;
+        Each(config, function(v, k){
+            self[k] = v;
+        });
     }
 
 });
