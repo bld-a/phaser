@@ -8,7 +8,8 @@ State.MainMenu.prototype = {
 
     create: function (){
 
-        this.game.add.text(this.world.centerX/2, this.world.centerY/2, this.Welcome, Config.Text.BaseText.Style);
+        var welcome = this.game.add.text(this.world.centerX, this.world.centerY, this.Welcome, Config.Text.BaseText.Style);
+        welcome.anchor.setTo(0.5,1);
         this.game.input.keyboard.onDownCallback = this.startGame;
 
     },

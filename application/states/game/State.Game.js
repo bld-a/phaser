@@ -38,6 +38,7 @@ State.Game.prototype = {
         this.initMap();
         this.initActor();
         this.initDisplay();
+        debugger
 
     },
 
@@ -48,8 +49,6 @@ State.Game.prototype = {
         MyGame.Controls.up.onDown.add(this.movePlayer, this);
         MyGame.Controls.down.onDown.add(this.movePlayer, this);
 
-        console.log(this.mapDisplay);
-        //this.drawDisplay();
     },
 
     initMap: function(){
@@ -102,10 +101,11 @@ State.Game.prototype = {
     initDisplay: function(){
 
         var self = this;
-        console.log(self.actorMap);
 
         Each(this.map, function(row, y){
+
             self.mapDisplay[y] = new Array;
+
             Each(row, function(column, x){
 
                 var cell = {};
@@ -116,11 +116,16 @@ State.Game.prototype = {
                     cell = column;
                 }
 
-                self.mapDisplay[y][x] = self.drawCell(cell);
+                self.mapDisplay[y][x] = self.initCell(cell);
 
             });
         });
 
+    },
+
+    initCell: function(column){
+        var style = {font: FONT + 'px monospace', fill: column.color};
+        return MyGame.game.add.text(FONT*0.6*column.x, FONT*column.y, column.symbol, style);
     },
 
     drawDisplay: function(){
@@ -133,33 +138,95 @@ State.Game.prototype = {
             });
         });
 
-        this.mapDisplay = blocks;
-
     },
 
     drawCell: function(column){
-        var style = {font: FONT + 'px monospaced', fill: column.color};
-        return MyGame.game.add.text(FONT*0.6*column.x, FONT*column.y, column.symbol, style);
+        //var style = {font: FONT + 'px monospace', fill: column.color};
+        //return MyGame.game.add.text(FONT*0.6*column.x, FONT*column.y, column.symbol, style);
     },
 
     movePlayer: function(key){
 
+        // draw map to overwrite previous actors positions
+        //drawMap();
+
+        // act on player input
+        var acted = false;
+
         switch (key.keyCode) {
             case Phaser.Keyboard.LEFT:
-                console.log('l');
+                acted = this.moveTo(this.player, {x:-1, y:0});
             break;
             case Phaser.Keyboard.RIGHT:
-                console.log('r');
+                acted = this.moveTo(this.player, {x:+1, y:0});
             break;
             case Phaser.Keyboard.DOWN:
-                console.log('d');
+                acted = this.moveTo(this.player, {x:0, y:+1});
             break;
             case Phaser.Keyboard.UP:
-                console.log('u');
+                acted = this.moveTo(this.player, {x:0, y:-1});
             break;
             default: return false;
         }
 
+        // draw actors in new positions
+        //drawActors();
+
+    },
+
+    canGo: function(actor, dir){
+
+        return  actor.x+dir.x >= 0 &&
+        actor.x+dir.x <= COLS - 1 &&
+        actor.y+dir.y >= 0 &&
+        actor.y+dir.y <= ROWS - 1 &&
+        this.map[actor.y+dir.y][actor.x+dir.x].Type == 'Floor';
+
+    },
+
+    moveTo: function(actor, dir) {
+
+        // check if actor can move in the given direction
+        if (!this.canGo(actor, dir))
+            return false;
+
+        // moves actor to the new location
+        var newKey = (actor.y + dir.y) + '_' + (actor.x + dir.x);
+
+        // if the destination tile has an actor in it
+        if (this.actorMap[newKey] != null) {
+
+            //decrement hitpoints of the actor at the destination tile
+            var victim = this.actorMap[newKey];
+            victim.hp--;
+
+            // if it's dead remove its reference
+            if (victim.hp == 0) {
+                this.actorMap[newKey] = null;
+                this.actorList[this.actorList.indexOf(victim)] = null;
+                if(victim != this.player) {
+                    this.livingEnemies--;
+                    if (this.livingEnemies == 0) {
+                        // victory message
+                        var victory = this.game.add.text(this.game.world.centerX, this.game.world.centerY, 'Victory!\nCtrl+r to restart', { fill : '#2e2', align: "center" } );
+                        victory.anchor.setTo(0.5,0.5);
+                    }
+                }
+            }
+        } else {
+
+            // remove reference to the actor's old position
+            this.actorMap[actor.y + '_' + actor.x] = null;
+
+            // update position
+            actor.y += dir.y;
+            actor.x += dir.x;
+
+            // add reference to the actor's new position
+            this.actorMap[actor.y + '_' + actor.x] = actor;
+        }
+
+        return true;
     },
 
     quitGame: function (pointer) {

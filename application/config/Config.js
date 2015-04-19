@@ -2,8 +2,8 @@ var Config = Config || new Object;
 
 Config.GameObject = {
     Fixed: {
-        Wall: {symbol: '#', color: '#8A4500'},
-        Floor: {symbol: '.', color: '#4D4D4D'}
+        Wall: {symbol: '▓', color: '#8A4500'},
+        Floor: {symbol: '░', color: '#4D4D4D'}
     },
     Actor: {
         Player: {symbol: '@', color: '#FFE75E', hp: 3, side: 'f'},
