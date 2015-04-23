@@ -1,7 +1,7 @@
 var State = State || new Object;
 
 State.MainMenu = function (game) {
-    this.Welcome = "Welcome to \n ROGUE \n Press any key...";
+    this.Welcome = "Welcome to \n ECS \n Press any key...";
 };
 
 State.MainMenu.prototype = {
