@@ -38,7 +38,6 @@ State.Game.prototype = {
         this.initMap();
         this.initActor();
         this.initDisplay();
-        debugger
 
     },
 
