@@ -17791,7 +17791,7 @@ Phaser.State.prototype.constructor = Phaser.State;
 */
 
 /**
-* The State Manager is responsible for loading, setting up and switching game states.
+* The State Manager is responsible for loading, setting up and switching game state.
 *
 * @class Phaser.StateManager
 * @constructor
@@ -17806,7 +17806,7 @@ Phaser.StateManager = function (game, pendingState) {
     this.game = game;
 
     /**
-    * @property {object} states - The object containing Phaser.States.
+    * @property {object} state - The object containing Phaser.States.
     */
     this.states = {};
 
@@ -27177,7 +27177,7 @@ Phaser.Input.prototype = {
     },
 
     /**
-    * Reset all of the Pointers and Input states.
+    * Reset all of the Pointers and Input state.
     *
     * The optional `hard` parameter will reset any events or callbacks that may be bound.
     * Input.reset is called automatically during a State change or if a game loses focus / visibility.
@@ -37912,14 +37912,14 @@ Object.defineProperty(Phaser.Rope.prototype, "segments", {
 /**
 * Create a new `Button` object. A Button is a special type of Sprite that is set-up to handle Pointer events automatically.
 *
-* The four states a Button responds to are:
+* The four state a Button responds to are:
 *
 * * 'Over' - when the Pointer moves over the Button. This is also commonly known as 'hover'.
 * * 'Out' - when the Pointer that was previously over the Button moves out of it.
 * * 'Down' - when the Pointer is pressed down on the Button. I.e. touched on a touch enabled device or clicked with the mouse.
 * * 'Up' - when the Pointer that was pressed down on the Button is released again.
 *
-* A different texture/frame and activation sound can be specified for any of the states.
+* A different texture/frame and activation sound can be specified for any of the state.
 *
 * Frames can be specified as either an integer (the frame ID) or a string (the frame name); the same values that can be used with a Sprite constructor.
 *
@@ -38216,7 +38216,7 @@ Phaser.Button.prototype.changeStateFrame = function (state) {
 };
 
 /**
-* Used to manually set the frames that will be used for the different states of the Button.
+* Used to manually set the frames that will be used for the different state of the Button.
 *
 * Frames can be specified as either an integer (the frame ID) or a string (the frame name); these are the same values that can be used with a Sprite constructor.
 *
@@ -42896,7 +42896,7 @@ Object.defineProperty(Phaser.RetroFont.prototype, "smoothed", {
 * Feature detection can be modified in the {@link Phaser.Device.onInitialized onInitialized} signal.
 *
 * When checking features using the exposed properties only the *truth-iness* of the value should be relied upon
-* unless the documentation states otherwise: properties may return `false`, `''`, `null`, or even `undefined`
+* unless the documentation state otherwise: properties may return `false`, `''`, `null`, or even `undefined`
 * when indicating the lack of a feature.
 *
 * Uses elements from System.js by MrDoob and Modernizr
@@ -51929,7 +51929,7 @@ Phaser.Animation.prototype = {
 
     /**
     * Called internally when the animation finishes playback.
-    * Sets the isPlaying and isFinished states and dispatches the onAnimationComplete event if it exists on the parent and local onComplete event.
+    * Sets the isPlaying and isFinished state and dispatches the onAnimationComplete event if it exists on the parent and local onComplete event.
     *
     * @method Phaser.Animation#complete
     */

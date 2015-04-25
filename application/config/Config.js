@@ -1,8 +1,18 @@
 var Config = Config || new Object;
 
-Config.GameObject = {};
+Config.State = [
+    'Boot', 'Preloader', 'MainMenu', 'Game', 'EndGame'
+];
 
-Config.Controls = {};
+Config.GameObject = [
+    'Base'
+];
+
+Config.Component = [
+    'Base'
+];
+
+Config.Controls = [];
 
 Config.Text = {
     BaseText: {

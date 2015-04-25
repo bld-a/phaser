@@ -1,10 +1,10 @@
 var State = State || new Object;
 
-State.PreLoader = function (game) {
+State.Preloader = function (game) {
 
 };
 
-State.PreLoader.prototype = {
+State.Preloader.prototype = {
 
     create: function (){}
 
