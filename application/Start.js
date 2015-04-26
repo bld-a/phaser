@@ -15,9 +15,10 @@ window.onload = function () {
     });
 
     var e = new GameObject.Tree();
-    console.log(e.Components);
-    e.removeComponent('Position');
-    console.log(e.Components);
+
+    console.log(e.Components.Position.x);
+    e.Components.Position.x = 2;
+    console.log(e.Components.Position.x);
 
     //	Now start the Boot state.
     MyGame.game.state.start('Boot');

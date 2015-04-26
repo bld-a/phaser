@@ -39,6 +39,10 @@ GameObject.Base = Class.extend({
 
     removeComponent: function(componentName){
         delete this.Components[componentName];
+    },
+
+    debug: function(){
+        console.log(JSON.stringify(this, null, 4));
     }
 
 });
