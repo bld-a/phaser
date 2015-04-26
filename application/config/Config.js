@@ -8,12 +8,13 @@ Config.State = {
     EndGame: {Name: 'EndGame'}
 };
 
-Config.GameObject = {
+Config.Component = {
     Base: {Name: 'Base'}
 };
 
-Config.Component = {
-    Base: {Name: 'Base'}
+Config.GameObject = {
+    Base: {Name: 'Base'},
+    Tree: {Name: 'Tree'}
 };
 
 Config.Controls = {};

@@ -24,6 +24,6 @@ Config.ConfigItemLoader = {
     }
 }
 
+Config.ConfigItemLoader.Load('Component');
 Config.ConfigItemLoader.Load('GameObject');
 Config.ConfigItemLoader.Load('State');
-Config.ConfigItemLoader.Load('Component');
