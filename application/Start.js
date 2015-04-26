@@ -14,6 +14,11 @@ window.onload = function () {
         MyGame.game.state.add(StateCfg.Name, State[StateCfg.Name]);
     });
 
+    var e = new GameObject.Tree();
+    console.log(e.Components);
+    e.removeComponent('Position');
+    console.log(e.Components);
+
     //	Now start the Boot state.
     MyGame.game.state.start('Boot');
 

@@ -9,12 +9,14 @@ Config.State = {
 };
 
 Config.Component = {
-    Base: {Name: 'Base'}
+    Position: {Name: 'Position'}
 };
 
 Config.GameObject = {
-    Base: {Name: 'Base'},
-    Tree: {Name: 'Tree'}
+    Tree: {
+        Name: 'Tree',
+        Components: ['Position']
+    }
 };
 
 Config.Controls = {};
