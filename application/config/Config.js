@@ -1,21 +1,27 @@
-var Config = Config || new Object;
+var Config = Config || {};
 
-Config.State = [
-    'Boot', 'Preloader', 'MainMenu', 'Game', 'EndGame'
-];
+Config.State = {
+    Boot: {Name: 'Boot'},
+    Preloader: {Name: 'Preloader'},
+    MainMenu: {Name: 'MainMenu'},
+    Game: {Name: 'Game'},
+    EndGame: {Name: 'EndGame'}
+};
 
-Config.GameObject = [
-    'Base'
-];
+Config.GameObject = {
+    Base: {Name: 'Base'}
+};
 
-Config.Component = [
-    'Base'
-];
+Config.Component = {
+    Base: {Name: 'Base'}
+};
 
-Config.Controls = [];
+Config.Controls = {};
 
 Config.Text = {
     BaseText: {
         Style: {font: '22px monospace', fill: '#fff', align: 'center'}
     }
-};
+}
+
+

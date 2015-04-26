@@ -1,4 +1,4 @@
-var State = State || new Object;
+var State = State || {};
 
 State.Game = function (game) {
 

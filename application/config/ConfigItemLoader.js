@@ -1,4 +1,4 @@
-var Config = Config || new Object;
+var Config = Config || {};
 
 Config.ConfigItemLoader = {
 
@@ -8,7 +8,7 @@ Config.ConfigItemLoader = {
         Each(Config[Category], function(Value){
             var ConfigItem = [];
             ConfigItem['Category'] = Category;
-            ConfigItem['Value'] = Value;
+            ConfigItem['Name'] = Value.Name;
             self.Insert(ConfigItem);
         });
     },
@@ -16,7 +16,7 @@ Config.ConfigItemLoader = {
     Insert: function(ConfigItem){
 
         var fileref = document.createElement('script');
-        var filename = 'application/'+ConfigItem.Category.toLowerCase()+'/'+ConfigItem.Category+'.'+ConfigItem.Value+'.js';
+        var filename = 'application/'+ConfigItem.Category.toLowerCase()+'/'+ConfigItem.Category+'.'+ConfigItem.Name+'.js';
         fileref.setAttribute("src", filename);
 
         if (typeof fileref != "undefined")

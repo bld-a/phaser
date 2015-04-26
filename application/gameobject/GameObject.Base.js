@@ -1,4 +1,4 @@
-var GameObject = GameObject || new Object;
+var GameObject = GameObject || {};
 
 GameObject.Base = Class.extend({
 
