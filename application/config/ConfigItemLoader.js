@@ -24,6 +24,7 @@ Config.ConfigItemLoader = {
     }
 }
 
+//add related files to dom
 Config.ConfigItemLoader.Load('Component');
 Config.ConfigItemLoader.Load('GameObject');
 Config.ConfigItemLoader.Load('State');
