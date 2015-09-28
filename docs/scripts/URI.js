@@ -423,7 +423,7 @@
   URI.buildQuery = function(data, duplicates) {
     // according to http://tools.ietf.org/html/rfc3986 or http://labs.apache.org/webarch/uri/rfc/rfc3986.html
     // being »-._~!$&'()*+,;=:@/?« %HEX and alnum are allowed
-    // the RFC explicitly states ?/foo being a valid use case, no mention of parameter syntax!
+    // the RFC explicitly state ?/foo being a valid use case, no mention of parameter syntax!
     // URI.js treats the query string as being application/x-www-form-urlencoded
     // see http://www.w3.org/TR/REC-html40/interact/forms.html#form-content-type
     var t = "";

@@ -1956,7 +1956,7 @@ table th[class*="span"],
   background-repeat: no-repeat;
   margin-top: 1px;
 }
-/* White icons with optional class, or on hover/focus/active states of certain elements */
+/* White icons with optional class, or on hover/focus/active state of certain elements */
 .icon-white,
 .nav-pills > .active > a > [class^="icon-"],
 .nav-pills > .active > a > [class*=" icon-"],

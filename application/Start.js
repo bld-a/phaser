@@ -1,5 +1,5 @@
 //namespace
-var MyGame = MyGame || new Object;
+var MyGame = MyGame || {};
 
 window.onload = function () {
 
@@ -9,11 +9,10 @@ window.onload = function () {
 
     //	Add the States your game has.
     //	You don't have to do this in the html, it could be done in your Boot state too, but for simplicity I'll keep it here.
-    MyGame.game.state.add('Boot', State.Boot);
-    MyGame.game.state.add('PreLoader', State.PreLoader);
-    MyGame.game.state.add('MainMenu', State.MainMenu);
-    MyGame.game.state.add('Game', State.Game);
-    MyGame.game.state.add('EndGame', State.EndGame);
+
+    Each(Config.State, function(StateCfg){
+        MyGame.game.state.add(StateCfg.Name, State[StateCfg.Name]);
+    });
 
     //	Now start the Boot state.
     MyGame.game.state.start('Boot');

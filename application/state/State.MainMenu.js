@@ -1,4 +1,4 @@
-var State = State || new Object;
+var State = State || {};
 
 State.MainMenu = function (game) {
     this.Welcome = "Welcome to \n ECS \n Press any key...";
